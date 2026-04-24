@@ -11,6 +11,22 @@
 	"version": "v1.0.0",
 	"developer": "Jacob1Jacob2",
 	"description": "Automatically syncs the music pitch with the player's speed.",
+	"settings": {
+		"preserve-pitch": {
+			"name": "Preserve pitch",
+			"description": "Keep the song's pitch unchanged when speed changes are detected.",
+			"type": "bool",
+			"default": false
+		},
+		"pixelBuffer": {
+			"name": "Portal buffer",
+			"description": "Offset (in pixels) used when detecting speed portals.",
+			"type": "int",
+			"default": 0,
+			"min": -100,
+			"max": 100
+		}
+	},
 	"dependencies": {
 		"geode.node-ids": ">=v1.23.3"
 	}

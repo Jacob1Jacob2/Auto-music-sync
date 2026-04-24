@@ -20,6 +20,7 @@ class $modify(ResetMusicLayer, PlayLayer) {
         float pitch = 1.0f;
         float supposedSpeed = 0.0f;
         bool needingOfPitch = false;
+        bool preservePitch = false;
         int pixelBuffer = 0;
     };
 
@@ -58,6 +59,11 @@ class $modify(ResetMusicLayer, PlayLayer) {
             m_fields->pixelBuffer = (int)Mod::get()->getSettingValue<int64_t>("pixelBuffer");
         } catch(...) {
             m_fields->pixelBuffer = 0;
+        }
+        try {
+            m_fields->preservePitch = Mod::get()->getSettingValue<bool>("preserve-pitch");
+        } catch(...) {
+            m_fields->preservePitch = false;
         }
 
         // Running the original init will trigger addObject for every item in the level
@@ -142,7 +148,10 @@ class $modify(ResetMusicLayer, PlayLayer) {
                     fmod->m_system->getMasterChannelGroup(&mGroup);
                     
                     if (mGroup) {
-                        if (m_player1->m_playerSpeed != m_fields->supposedSpeed) {
+                        if (m_fields->preservePitch) {
+                            mGroup->setPitch(1.0f);
+                        }
+                        else if (m_player1->m_playerSpeed != m_fields->supposedSpeed) {
                             mGroup->setPitch(m_fields->pitch);
                         }
                         else if (m_player1->m_playerSpeed == m_fields->supposedSpeed) {
