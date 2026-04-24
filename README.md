@@ -2,4 +2,4 @@
 
 ### Contact & Feedback
 If you run into any bugs or game crashes, please open an **Issue** on this GitHub repository.
-My discord is jacob1jacob2.
+My youtube is jacob1jacob2 and my discord is "jacob1jacob2."
